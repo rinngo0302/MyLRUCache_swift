@@ -1,13 +1,20 @@
 import XCTest
 @testable import MyLRUCache_swift
 
-class MyCommandLineToolTests : XCTestCase
+class MyLRUCache_swiftTest : XCTestCase
 {
-    func test()
+    class Mapのような仕組み : XCTestCase
     {
-        let expected = 5
-        let actual = 2 + 2
-        
-        XCTAssertEqual(expected, actual, "計算が間違えています。")
+        class キャッシュのタプルの配列を用意する : XCTestCase
+        {
+            func typeで_String_String_になるか()
+            {
+                // 準備
+                let lru: MyLRUCache_swift = MyLRUCache_swift()
+                
+                // 実行 & 検証
+                XCTAssertEqual("\(type(of: lru.cache))", "\(Array<(String, String)>.self)", "キャッシュのデータ型が違います。")
+            }
+        }
     }
 }

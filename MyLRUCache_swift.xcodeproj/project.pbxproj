@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DEDA65342D1DC45F00DCE481 /* MyLRUCache_swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA65332D1DC45F00DCE481 /* MyLRUCache_swift.swift */; };
+		DEDA65352D1DC45F00DCE481 /* MyLRUCache_swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA65332D1DC45F00DCE481 /* MyLRUCache_swift.swift */; };
+		DEDA65382D1DCA6800DCE481 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEDA65362D1DCA6000DCE481 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		DE597F4A2D1DAB5D001587FB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -21,14 +27,12 @@
 /* Begin PBXFileReference section */
 		DE597F4C2D1DAB5D001587FB /* MyLRUCache_swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MyLRUCache_swift; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE597F5C2D1DAC79001587FB /* MyLRUCache_swiftTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyLRUCache_swiftTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEDA65322D1DC45F00DCE481 /* MyLRUCache_swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyLRUCache_swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		DEDA65332D1DC45F00DCE481 /* MyLRUCache_swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLRUCache_swift.swift; sourceTree = "<group>"; };
+		DEDA65362D1DCA6000DCE481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		DE597F4E2D1DAB5D001587FB /* MyLRUCache_swift */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MyLRUCache_swift;
-			sourceTree = "<group>";
-		};
 		DE597F5D2D1DAC79001587FB /* MyLRUCache_swiftTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MyLRUCache_swiftTest;
@@ -57,9 +61,11 @@
 		DE597F432D1DAB5D001587FB = {
 			isa = PBXGroup;
 			children = (
-				DE597F4E2D1DAB5D001587FB /* MyLRUCache_swift */,
+				DEDA65362D1DCA6000DCE481 /* README.md */,
+				DEDA65332D1DC45F00DCE481 /* MyLRUCache_swift.swift */,
 				DE597F5D2D1DAC79001587FB /* MyLRUCache_swiftTest */,
 				DE597F4D2D1DAB5D001587FB /* Products */,
+				DEDA65322D1DC45F00DCE481 /* MyLRUCache_swift-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,9 +92,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				DE597F4E2D1DAB5D001587FB /* MyLRUCache_swift */,
 			);
 			name = MyLRUCache_swift;
 			packageProductDependencies = (
@@ -131,6 +134,7 @@
 				TargetAttributes = {
 					DE597F4B2D1DAB5D001587FB = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 					};
 					DE597F5B2D1DAC79001587FB = {
 						CreatedOnToolsVersion = 16.2;
@@ -162,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDA65382D1DCA6800DCE481 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDA65352D1DC45F00DCE481 /* MyLRUCache_swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDA65342D1DC45F00DCE481 /* MyLRUCache_swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,10 +313,13 @@
 		DE597F542D1DAB5D001587FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67447MWT6K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyLRUCache_swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -317,10 +327,12 @@
 		DE597F552D1DAB5D001587FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67447MWT6K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyLRUCache_swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
