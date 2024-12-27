@@ -22,6 +22,19 @@ class MyLRUCache_swift
         _caches.append((key: key, value: val))
     }
     
+    public func get(key key: String) -> String?
+    {
+        for i in 0 ..< _caches.count
+        {
+            if (_caches[i].key == key)
+            {
+                return _caches[i].value
+            }
+        }
+        
+        return nil
+    }
+    
     public var caches: Array<(key: String, value: String)>
     {
         get
