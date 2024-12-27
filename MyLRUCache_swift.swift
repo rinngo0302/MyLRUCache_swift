@@ -9,18 +9,24 @@ import Foundation
 
 class MyLRUCache_swift
 {
-    private var _cache: Array<(String, String)>
+    private var _caches: Array<(key: String, value: String)>
     
     init()
     {
-        _cache = []
+        _caches = []
     }
     
-    public var cache: Array<(String, String)>
+    
+    public func put(key key: String, value val: String)
+    {
+        _caches.append((key: key, value: val))
+    }
+    
+    public var caches: Array<(key: String, value: String)>
     {
         get
         {
-            _cache
+            _caches
         }
     }
 }
