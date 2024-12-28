@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "25F514B1-DA09-417C-A29B-E2DE26BEFD09",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MyLRUCache_swift.xcodeproj",
+        "identifier" : "DE597F5B2D1DAC79001587FB",
+        "name" : "MyLRUCache_swiftTest"
+      }
+    }
+  ],
+  "version" : 1
+}

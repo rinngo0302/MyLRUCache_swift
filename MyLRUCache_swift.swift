@@ -29,6 +29,11 @@ class MyLRUCache_swift
     
     public func put(key key: String, value val: String)
     {
+        if (isMax())
+        {
+            pop()
+        }
+        
         _caches.append((key: key, value: val))
     }
     
@@ -38,21 +43,46 @@ class MyLRUCache_swift
         {
             if (_caches[i].key == key)
             {
-                return _caches[i].value
+                let value = _caches[i].value
+                
+                swapNewCache(index: i)
+                
+                return value
             }
         }
         
         return nil
     }
     
-    public func pop(key key: String)
+    public func pop()
     {
-        _caches = _caches.filter { $0.key != key }
+        if (_caches.isEmpty)
+        {
+            print("削除する要素がありません。")
+            return;
+        }
+        _caches.removeFirst()
     }
     
     public func isMax() -> Bool
     {
         return _caches.count >= _maxSize
+    }
+    
+    private func swapNewCache(index newIndex: Int)
+    {
+        if (newIndex >= _caches.count)
+        {
+            print("このindexは範囲外です。")
+            return;
+        }
+        
+        let cache = _caches[newIndex]
+        for i in newIndex ..< _caches.count - 1
+        {
+            _caches[i] = _caches[i + 1]
+        }
+        _caches[_caches.count - 1] = cache
     }
     
     public var caches: Array<(key: String, value: String)>
