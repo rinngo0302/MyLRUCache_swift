@@ -35,6 +35,11 @@ class MyLRUCache_swift
         return nil
     }
     
+    public func pop(key key: String)
+    {
+        _caches = _caches.filter { $0.key != key }
+    }
+    
     public var caches: Array<(key: String, value: String)>
     {
         get

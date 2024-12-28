@@ -71,4 +71,16 @@ class Mapのような仕組み : XCTestCase
         // 実行 & 検証
         XCTAssertEqual(lru.get(key: "c"), nil, "getメソッドであるはずのないオブジェクトが取得されています。")
     }
+    
+    func test_a_dataA_を削除()
+    {
+        // 準備
+        lru.put(key: "a", value: "dataA")
+        
+        // 実行
+        lru.pop(key: "a")
+        
+        // 検証
+        XCTAssertNil(lru.get(key: "a"), "(a, dataA)の削除ができていません。")
+    }
 }
