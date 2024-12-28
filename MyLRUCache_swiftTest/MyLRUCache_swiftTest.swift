@@ -83,4 +83,11 @@ class Mapのような仕組み : XCTestCase
         // 検証
         XCTAssertNil(lru.get(key: "a"), "(a, dataA)の削除ができていません。")
     }
+    
+    func test_ないはずの_a_dataA_を取得しようとしたらnilを返すか()
+    {
+        // 準備
+        // 実行 & 検証
+        XCTAssertNil(lru.get(key: "a"), "データがないときnilを返していません。")
+    }
 }
