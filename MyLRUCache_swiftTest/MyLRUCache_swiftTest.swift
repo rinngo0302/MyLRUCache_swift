@@ -33,6 +33,7 @@ class Mapのような仕組み : XCTestCase
     func test_a_dataA_と_b_dataB_を追加()
     {
         // 準備
+        lru.maxSize = 2
         
         // 実行
         lru.put(key: "a", value: "dataA")
@@ -76,9 +77,10 @@ class Mapのような仕組み : XCTestCase
     {
         // 準備
         lru.put(key: "a", value: "dataA")
+        lru.put(key: "b", value: "dataB")
         
         // 実行
-        lru.pop(key: "a")
+        lru.pop()
         
         // 検証
         XCTAssertNil(lru.get(key: "a"), "(a, dataA)の削除ができていません。")
@@ -147,16 +149,34 @@ class キャッシュの最大サイズに達した時最も使われていな�
         XCTAssertTrue(!lru.isMax(), "最大サイズの誤検知しています。")
     }
     
-    func test_キャッシュの最大サイズを3から2に変更()
+    func test_a_dataA_と_b_dataB_を追加してaをgetしたらaをキャッシュの一番後ろに移動()
+    {
+        // 準備
+        lru.put(key: "a", value: "dataA")
+        lru.put(key: "b", value: "dataB")
+        
+        // 実行
+        lru.get(key: "a")
+        
+        // 検証
+        XCTAssertEqual(lru.caches[1].key, "a", "put時の入れ替えができていません。")
+    }
+    
+    func test_最大サイズを3にして4つ目を追加する直前にaをgetしてからputする()
     {
         // 準備
         lru.maxSize = 3
+        
+        // 実行
         lru.put(key: "a", value: "dataA")
         lru.put(key: "b", value: "dataB")
         lru.put(key: "c", value: "dataC")
-        lru.maxSize = 2
-                
-        // 実行 & 検証
-        XCTAssertEqual(lru.caches.count, 2, "キャッシュの最大サイズの変更に失敗しています。")
+        print("key: a, value: \(lru.get(key: "a")!)")
+        lru.put(key: "d", value: "dataD")
+        
+        print(lru.caches)
+        
+        // 検証
+        XCTAssertEqual(lru.caches[0].key, "c", "一番使われていないデータが削除されていません。")
     }
 }
