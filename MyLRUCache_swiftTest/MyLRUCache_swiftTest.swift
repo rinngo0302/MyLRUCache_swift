@@ -91,3 +91,72 @@ class Mapのような仕組み : XCTestCase
         XCTAssertNil(lru.get(key: "a"), "データがないときnilを返していません。")
     }
 }
+
+class キャッシュの最大サイズに達した時最も使われていないデータから順に消される : XCTestCase
+{
+    var lru: MyLRUCache_swift!
+    
+    override func setUp()
+    {
+        super.setUp()
+        lru = MyLRUCache_swift()
+    }
+    
+    func test_キャッシュの最大サイズを3に設定()
+    {
+        // 準備
+        
+        // 実行
+        lru.maxSize = 3
+        
+        // 検証
+        XCTAssertEqual(lru.maxSize, 3, "キャッシュの最大サイズが3ではないです。")
+    }
+    
+    func test_キャッシュの最大サイズを4に設定()
+    {
+        // 準備
+        
+        // 実行
+        lru.maxSize = 4
+        
+        // 検証
+        XCTAssertEqual(lru.maxSize, 4, "キャッシュの最大サイズが3ではないです。")
+    }
+    
+    func test_キャッシュの最大サイズを3にして達したらtrueになるか()
+    {
+        // 準備
+        lru.maxSize = 3
+        lru.put(key: "a", value: "dataA")
+        lru.put(key: "b", value: "dataB")
+        lru.put(key: "c", value: "dataC")
+                
+        // 実行 & 検証
+        XCTAssertTrue(lru.isMax(), "最大サイズに達しても検出できていません。")
+    }
+    
+    func test_キャッシュの最大サイズを3にしてサイズが2のときはfalseになるか()
+    {
+        // 準備
+        lru.maxSize = 3
+        lru.put(key: "a", value: "dataA")
+        lru.put(key: "b", value: "dataB")
+        
+        // 実行 & 検証
+        XCTAssertTrue(!lru.isMax(), "最大サイズの誤検知しています。")
+    }
+    
+    func test_キャッシュの最大サイズを3から2に変更()
+    {
+        // 準備
+        lru.maxSize = 3
+        lru.put(key: "a", value: "dataA")
+        lru.put(key: "b", value: "dataB")
+        lru.put(key: "c", value: "dataC")
+        lru.maxSize = 2
+                
+        // 実行 & 検証
+        XCTAssertEqual(lru.caches.count, 2, "キャッシュの最大サイズの変更に失敗しています。")
+    }
+}

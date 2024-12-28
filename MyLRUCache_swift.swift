@@ -9,13 +9,23 @@ import Foundation
 
 class MyLRUCache_swift
 {
+    // キャッシュ
     private var _caches: Array<(key: String, value: String)>
+    
+    // 最大サイズ
+    private var _maxSize: Int
     
     init()
     {
         _caches = []
+        _maxSize = 10
     }
     
+    convenience init(size maxsize: Int)
+    {
+        self.init()
+        _maxSize = maxsize
+    }
     
     public func put(key key: String, value val: String)
     {
@@ -40,11 +50,40 @@ class MyLRUCache_swift
         _caches = _caches.filter { $0.key != key }
     }
     
+    public func isMax() -> Bool
+    {
+        return _caches.count >= _maxSize
+    }
+    
     public var caches: Array<(key: String, value: String)>
     {
         get
         {
             _caches
+        }
+    }
+    
+    public var maxSize: Int
+    {
+        get
+        {
+            _maxSize
+        }
+        
+        set
+        {
+            if (newValue < 0)
+            {
+                print("キャッシュのサイズは0以上です。")
+                return;
+            }
+            
+            _maxSize = newValue
+            
+            while (_caches.count > newValue)
+            {
+                _caches.removeFirst()
+            }
         }
     }
 }
