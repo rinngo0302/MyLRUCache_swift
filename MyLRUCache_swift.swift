@@ -17,6 +17,7 @@ class MyLRUCache_swift
     
     init()
     {
+        // 最大サイズの指定がないとき、サイズは10
         _caches = []
         _maxSize = 10
     }
@@ -27,24 +28,25 @@ class MyLRUCache_swift
         _maxSize = maxsize
     }
     
-    public func put(key key: String, value val: String)
+    public func put(key newKey: String, value newValue: String)
     {
+        // サイズが最大のとき要素を削除
         if (isMax())
         {
             pop()
         }
         
-        _caches.append((key: key, value: val))
+        _caches.append((key: newKey, value: newValue))
     }
     
-    public func get(key key: String) -> String?
+    public func get(key requiredKey: String) -> String?
     {
         for i in 0 ..< _caches.count
         {
-            if (_caches[i].key == key)
+            if (requiredKey == _caches[i].key)
             {
                 let value = _caches[i].value
-                
+                // 使用した要素を一番後ろに入れ替える
                 swapNewCache(index: i)
                 
                 return value
@@ -61,6 +63,7 @@ class MyLRUCache_swift
             print("削除する要素がありません。")
             return;
         }
+        
         _caches.removeFirst()
     }
     

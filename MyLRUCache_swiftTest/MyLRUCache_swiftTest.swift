@@ -159,7 +159,7 @@ class キャッシュの最大サイズに達した時最も使われていな�
         lru.get(key: "a")
         
         // 検証
-        XCTAssertEqual(lru.caches[1].key, "a", "put時の入れ替えができていません。")
+        XCTAssertEqual(lru.caches[1].key, "a", "get時の入れ替えができていません。")
     }
     
     func test_最大サイズを3にして4つ目を追加する直前にaをgetしてからputする()
